@@ -1,6 +1,11 @@
 <?php
 require_once '../DbManager.php';
 
+session_start();
+if (!isset($_POST['token']) || $_POST['token'] !== $_SESSION['token']) {
+  die('不正なアクセスが行われました。');
+}
+
 try {
     //データベースに接続
     $db = getDb();
